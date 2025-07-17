@@ -13,16 +13,16 @@ nav_order: 9
 ### What is Automated?
 
 **Continuous Integration (CI):**
-- **Automated testing** on every commit and pull request
-- **Multi-platform testing** across Windows, macOS, and Linux
-- **Multi-version testing** across Python 3.8, 3.9, 3.10, and 3.11
-- **Code quality validation** through comprehensive unit test suite (44+ tests)
+- **Automated testing** on every commit and pull request.
+- **Multi-platform testing** across Windows, macOS, and Linux.
+- **Multi-version testing** across Python 3.9, 3.10, and 3.11
+- **Code quality validation** through comprehensive unit test suite (55+ tests).
 
 **Continuous Deployment (CD):**
-- **Automatic PyPI releases** triggered by semantic version tags
-- **Package building** and distribution without manual intervention
+- **Automatic GitHub releases** triggered by semantic version tags
+- **Source code packaging** and distribution without manual intervention
 - **Release documentation** generation from git tag messages
-- **Immediate global availability** via pip installation
+- **Immediate availability** via GitHub releases page
 
 ### Why This Approach?
 
@@ -34,7 +34,7 @@ nav_order: 9
 
 **Deployment Efficiency:**
 - **Zero manual deployment** - Eliminates human error in release process
-- **Instant availability** - Users can install new versions within minutes of release
+- **Instant availability** - Users can download new versions within minutes of release
 - **Rollback capability** - Clear version history enables quick issue resolution
 - **Scalable process** - Same pipeline works for patches, minor, and major releases
 
@@ -43,14 +43,17 @@ nav_order: 9
 ### Workflow Architecture
 
 **Two-Stage Pipeline:**
+
 ```markdown
-┌─────────────────┐ ┌─────────────────┐
-│ check.yml │ │ deploy.yml │
-│ │ │ │
-│ - Run tests │ ──▶│ - Build package │
-│ - Multi-OS │ │ - Upload PyPI │
-│ - Multi-Python │ │ - Create release│
-└─────────────────┘ └─────────────────┘
+┌──────────────────────────────┐    ┌──────────────────────────────┐
+│         check.yml            │    │        release.yml           │
+│                              │    │                              │
+│  ▸ Run Tests                 │    │  ▸ Build Source              │
+│  ▸ Multi-OS Testing          │───▶│  ▸ Create GitHub Release     │
+│  ▸ Multi-Python Versions     │    │  ▸ Attach Source Files       │
+│                              │    │                              │
+└──────────────────────────────┘    └──────────────────────────────┘
+     Continuous Integration              Continuous Deployment
 ```
 
 ### Check Workflow (check.yml)
@@ -61,9 +64,9 @@ nav_order: 9
 - **Manual dispatch** for testing purposes
 
 **Test Matrix:**
-- **Operating Systems**: Ubuntu (latest), Windows (latest), macOS (latest)
-- **Python Versions**: 3.8, 3.9, 3.10, 3.11
-- **Total Combinations**: 12 test environments per commit
+- **Operating Systems**: Ubuntu, Windows, macOS
+- **Python Versions**: 3.9, 3.10, 3.11
+- **Total Combinations**: 9 test environments per commit
 
 **Workflow Steps:**
 1. **Checkout code** from repository
@@ -73,11 +76,11 @@ nav_order: 9
 5. **Report test results** with pass/fail status
 
 **Success Criteria:**
-- **All 44+ tests pass** across all environments
+- **All 55+ tests pass** across all environments
 - **No import errors** or dependency conflicts
 - **Consistent behavior** across all platforms and Python versions
 
-### Deploy Workflow (deploy.yml)
+### Release Workflow (release.yml)
 
 **Triggers:**
 - **Semantic version tags** pushed to repository (e.g., 1.0.0, 1.1.0)
@@ -88,28 +91,26 @@ nav_order: 9
 1. **Validate tag format** - Ensure semantic versioning compliance
 2. **Checkout tagged code** - Use exact release version
 3. **Setup build environment** - Python 3.11 with build tools
-4. **Install build dependencies** - build, twine, setuptools
-5. **Run final test suite** - Last quality check before deployment
-6. **Build package artifacts** - Create .whl and .tar.gz files
-7. **Upload to PyPI** - Deploy using stored credentials
-8. **Create GitHub release** - Generate release notes from tag message
+4. **Install build dependencies** - build tools and testing framework
+5. **Run final test suite** - Last quality check before release
+6. **Build source distribution** - Create source code archives
+7. **Create GitHub release** - Generate release with tag message as notes
+8. **Attach source code** - Upload .zip and .tar.gz files to release
 
 **Quality Gates:**
-- **Test suite must pass** before deployment begins
+- **Test suite must pass** before release begins
 - **Build process must complete** without errors
-- **PyPI upload must succeed** for release to be considered complete
+- **GitHub release creation must succeed** for release to be considered complete
 
 ## Configuration Details
 
 ### Environment Variables and Secrets
 
 **GitHub Secrets (Encrypted):**
-- **`TWINE_USERNAME`** - PyPI username for package upload
-- **`TWINE_PASSWORD`** - PyPI password/token for authentication
 - **`GITHUB_TOKEN`** - Automatic token for GitHub API access (creating releases)
 
 **Environment Variables:**
-- **`RELEASE_DRY_RUN`** - Set to false for actual deployments
+- **`RELEASE_DRY_RUN`** - Set to false for actual releases
 - **`PYTHON_VERSION`** - Dynamically set based on setup.py configuration
 
 **Security Considerations:**
@@ -145,32 +146,26 @@ nav_order: 9
 1. **Complete development** on feature branches
 2. **Merge to main** after full testing
 3. **Create semantic version tag** with descriptive message
-4. **Push tag** - Automatic deployment begins
-5. **Monitor deployment** - Verify successful PyPI upload
-6. **Announce release** - New version available via pip install
+4. **Push tag** - Automatic release begins
 
 ### Monitoring and Feedback
 
 **Real-time Monitoring:**
 - **GitHub Actions tab** - Live workflow execution status
-- **Email notifications** - Automatic alerts for failures
-- **Status badges** - Visual indicators in README
-- **Slack integration** - Team notifications (if configured)
 
 **Failure Handling:**
-- **Automatic retry** for transient failures
 - **Clear error messages** for debugging
-- **Rollback capability** - Previous versions remain available
-- **Issue tracking** - Failed deployments create GitHub issues
+- **Rollback capability** - Previous versions remain available on GitHub
+- **Issue tracking** - Failed releases create GitHub issues
 
 ## Performance and Reliability
 
 ### Pipeline Performance
 
 **Typical Execution Times:**
-- **Check workflow**: 5-8 minutes (parallel execution across 12 environments)
-- **Deploy workflow**: 3-5 minutes (sequential build and upload)
-- **Total release time**: 8-13 minutes from tag push to PyPI availability
+- **Check workflow**: 4-6 minutes (parallel execution across 9 environments).
+- **Release workflow**: 2-4 minutes (sequential build and release creation).
+- **Total release time**: 6-10 minutes from tag push to GitHub release availability.
 
 **Optimization Strategies:**
 - **Parallel testing** - All platform/version combinations run simultaneously
@@ -181,28 +176,12 @@ nav_order: 9
 ### Reliability Measures
 
 **Error Prevention:**
-- **Comprehensive testing** - 44+ tests cover all functionality
+- **Comprehensive testing** - 55+ tests cover all functionality
 - **Multi-environment validation** - Consistent behavior across platforms
-- **Automated quality gates** - No manual deployment decisions
-- **Rollback procedures** - Previous versions always available
+- **Automated quality gates** - No manual release decisions.
+- **Rollback procedures** - Previous versions always available on GitHub.
 
 **Monitoring and Alerting:**
 - **Build status notifications** - Immediate feedback on failures
-- **Deployment verification** - Automated checks for successful PyPI upload
-- **Health monitoring** - Package installation verification
-- **User feedback integration** - GitHub issues for problem reporting
-
-## Benefits Achieved
-
-**For FlappyPy v1.0.0:**
-- **100% automated deployment** - No manual intervention required
-- **Zero deployment errors** - Successful PyPI release on first attempt
-- **Immediate availability** - Users could install within minutes
-- **Professional quality** - Industry-standard CI/CD practices demonstrated
-- **Scalable foundation** - Ready for future releases and team growth
-
-**For Future Development:**
-- **Confidence in changes** - Every commit validated automatically
-- **Rapid iteration** - Quick feedback enables faster development
-- **Quality assurance** - Automated testing prevents regressions
-- **Professional workflow** - Demonstrates best practices for educational purposes
+- **Release verification** - Automated checks for successful GitHub release creation
+- **User feedback integration** - GitHub issues for problem reporting.
