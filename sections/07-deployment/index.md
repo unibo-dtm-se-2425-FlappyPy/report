@@ -13,24 +13,27 @@ nav_order: 8
 ### Prerequisites
 
 **Required Software:**
-- **Python 3.8 or higher** - FlappyPy is compatible with Python 3.8, 3.9, 3.10, and 3.11
+- **Python 3.9 or higher** - FlappyPy is compatible with Python 3.9, 3.10, and 3.11
 - **pip package manager** - Usually included with Python installations
 - **Operating System**: Windows, macOS, or Linux
 
 **Installation Commands:**
 
-**Install FlappyPy from PyPI**
+**Install FlappyPy from GitHub Releases (Current Method)**
 ```bash
-pip install FlappyPy
-```
-**Alternative: Install with specific version**
-```bash
-pip install FlappyPy==1.0.0
+git clone https://github.com/unibo-dtm-se-2425-FlappyPy/artifact.git
+cd artifact
+pip install -r requirements.txt
 ```
 
-**Automatic Dependency Installation:**
-- **pygame 2.6.1** - Graphics and input handling library (installed automatically)
-- **setuptools** - Package management utilities (installed automatically)
+**Future PyPI Installation (Not Yet Available)**
+```bash
+pip install FlappyPy  # Not yet implemented
+```
+
+**Manual Dependency Installation:**
+- **pygame 2.6.1** - Graphics and input handling library (install via requirements.txt)
+- **setuptools** - Package management utilities (install via requirements.txt)
 
 ### Configuration
 
@@ -45,6 +48,7 @@ pip install FlappyPy==1.0.0
 **Running FlappyPy:**
 **Launch the game**
 ```bash
+cd artifact
 python -m FlappyPy
 ```
 
@@ -58,10 +62,12 @@ python -m FlappyPy
 **Test Installation:**
 **Verify installation**
 ```bash
+cd artifact
 python -c "import FlappyPy; print('FlappyPy installed successfully')"
 ```
 **Test game launch (should open game window)**
 ```bash
+cd artifact
 python -m FlappyPy
 ```
 
@@ -92,52 +98,16 @@ python -m FlappyPy
 
 **Not Applicable: FlappyPy is a Desktop Application**
 
-### No Server Requirements
-
-**FlappyPy does not require server-side installation because:**
-- **Desktop game** - Runs entirely on user's local machine
-- **No network functionality** - No online features or multiplayer
-- **No database** - No persistent data storage requirements
-- **No web interface** - No browser-based components
-- **Self-contained** - All game logic and assets included in package
-
-### No Additional Server Software
-
-**FlappyPy does not require:**
-- **Web servers** - No HTTP/HTTPS services needed
-- **Database servers** - No data persistence beyond game session
-- **Message brokers** - No inter-process communication
-- **Load balancers** - No distributed architecture
-- **Authentication services** - No user accounts or login systems
-
-**Architecture Type:**
-- **Standalone desktop application** - Single-process execution
-- **Local-only operation** - No network communication
-- **Session-based** - No data persists between game sessions
-
-### Distribution Model
-
-**Client-Side Distribution Only:**
-- **PyPI distribution** - Users install directly from Python Package Index
-- **No server deployment** - No infrastructure to maintain
-- **No scalability concerns** - Each user runs their own instance
-- **No server monitoring** - No uptime requirements or health checks
-
-**Benefits of Desktop-Only Architecture:**
-- **Simple deployment** - Just pip install for end users
-- **No infrastructure costs** - No servers to maintain or pay for
-- **Offline capability** - Works without internet connection
-- **Privacy friendly** - No data collection or transmission
-- **Educational focus** - Clear, simple architecture for learning
-
 ## Deployment Verification
 
 **User Experience Validation:**
 
 **Installation Test Checklist:**
-- ✅ **Python 3.8+ available** - `python --version` shows compatible version
+- ✅ **Python 3.9+ available** - `python --version` shows compatible version
+- ✅ **Git functioning** - `git --version` shows working version control
 - ✅ **pip functioning** - `pip --version` shows working package manager
-- ✅ **FlappyPy installs** - `pip install FlappyPy` completes without errors
+- ✅ **FlappyPy clones** - `git clone` completes without errors
+- ✅ **Dependencies install** - `pip install -r requirements.txt` completes without errors
 - ✅ **Game launches** - `python -m FlappyPy` opens game window
 - ✅ **Gameplay works** - Spacebar input produces bird movement
 - ✅ **Physics active** - Bird falls due to gravity when not jumping
@@ -148,10 +118,10 @@ python -m FlappyPy
 - **Windows testing** - Verified on Windows 10/11 systems
 - **macOS testing** - Verified on macOS 10.15+ systems  
 - **Linux testing** - Verified on Ubuntu 20.04+ and similar distributions
-- **Python version testing** - Verified on Python 3.8, 3.9, 3.10, 3.11
+- **Python version testing** - Verified on Python 3.9, 3.10, 3.11
 
 **Success Criteria:**
 - **100% installation success rate** across supported platforms
-- **Immediate gameplay** - No additional setup required
+- **Immediate gameplay** - Minimal setup required after git clone
 - **Consistent performance** - 60 FPS gameplay on all platforms
-- **No configuration needed** - Works out of the box
+- **Manual configuration only** - Dependencies installed via requirements.txt
