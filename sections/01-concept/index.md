@@ -13,7 +13,7 @@ FlappyPy is a **desktop application** developed as a complete Python implementat
 - **Interactive Desktop Game Application** - A standalone executable game with real-time graphics and user input
 - **Educational Software Package** - Demonstrates professional Python game development practices
 
-The application utilizes the **pygame** library for graphics rendering, input handling, and game loop management, creating a smooth 60 FPS gaming experience on desktop platforms.
+The application utilizes the **pygame** library for graphics rendering, input handling, and game loop management, creating a smooth gaming experience on desktop platforms.
 
 ## Use Case Collection
 

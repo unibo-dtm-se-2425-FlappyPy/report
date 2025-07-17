@@ -8,8 +8,6 @@ nav_order: 3
 
 ## User Stories
 
-### Personas
-
 **Casual Gamer**
 - As a casual gamer, I want to play a simple, engaging game during short breaks so that I can have quick entertainment without complex setup.
 - As a casual gamer, I want the game to start immediately when I launch it so that I don't waste time on menus or configuration.
@@ -48,6 +46,12 @@ nav_order: 3
 - The system shall transition to game over state upon collision detection.
 - The system shall provide restart functionality via spacebar when in game over state.
 - The system shall reset all game objects to initial positions upon restart.
+
+**FR6: Scoring System**
+- The system shall increment the score by one point when the bird successfully passes through a pipe gap.
+- The system shall display the current score continuously during gameplay.
+- The system shall maintain score accuracy throughout the game session.
+- The system shall reset the score to zero when the game restarts.
 
 ### Non-Functional Requirements
 
@@ -127,3 +131,9 @@ nav_order: 3
 - Game over state prevents all physics updates.
 - Restart functionality resets bird to initial position and velocity.
 - Restart clears all existing pipe obstacles.
+
+### FR6 Acceptance Criteria
+- Score increments exactly once when bird's center passes the vertical center line of each pipe pair.
+- Score display renders clearly and remains visible throughout gameplay.
+- Score calculation maintains accuracy during extended gameplay sessions.
+- Score resets to zero immediately upon game restart.

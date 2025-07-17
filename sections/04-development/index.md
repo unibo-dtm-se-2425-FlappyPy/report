@@ -6,6 +6,30 @@ nav_order: 5
 
 # Development
 
+## Development Approach
+
+**Hybrid Development Methodology**
+
+FlappyPy was developed using a combination of development approaches:
+
+**Conventional Development Approach - Core Game Components:**
+
+The majority of game components (foundation, bird physics, collision detection, pipe generation) were developed using conventional development methodology:
+
+1. **Requirements analysis** - Define component specifications and behavior
+2. **Implementation first** - Develop game mechanics based on requirements
+3. **Post-implementation testing** - Write comprehensive tests after code completion
+4. **Iterative refinement** - Improve code quality and add edge case handling
+
+**Test-Driven Development (TDD) - Scoring System Only:**
+
+The scoring system components were developed using systematic Test-Driven Development:
+
+1. **Write failing tests first** - Define expected scoring behavior through test cases
+2. **Implement minimal code** - Write just enough code to make scoring tests pass
+3. **Refactor and improve** - Clean up scoring logic while maintaining test coverage
+4. **Iterate incrementally** - Build scoring features step-by-step with continuous validation
+
 ## DVCS
 
 ### Git Workflow Strategy
