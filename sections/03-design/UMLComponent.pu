@@ -1,0 +1,39 @@
+@startuml
+title FlappyPy Game - Component Diagram
+
+' External Framework
+[Pygame Framework] as pygame
+
+' Core Components
+[Game Loop] as gameloop
+[Bird] as bird
+[Pipe System] as pipes
+[Score] as score
+[Audio System] as audio
+
+' Simple Interfaces
+interface "Game Control" as control
+interface "Graphics" as graphics
+interface "Sound" as sound
+
+' Core Relationships
+gameloop - control
+gameloop ..> bird : manages
+gameloop ..> pipes : manages
+gameloop ..> score : tracks
+gameloop ..> audio : controls
+
+' Component Interactions
+bird ..> pipes : collides with
+pipes ..> score : updates
+
+' System Interfaces
+gameloop ..> graphics : renders
+audio - sound
+
+' External Dependencies
+pygame ..> control : provides
+pygame ..> graphics : provides
+pygame ..> sound : provides
+
+@enduml

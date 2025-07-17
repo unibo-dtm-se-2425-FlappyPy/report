@@ -1,0 +1,48 @@
+@startuml
+title FlappyPy Deployment Architecture
+
+' Development Environment
+node "Developer Environment" as dev {
+    component "main.py" as game
+    component "Assets (images, sounds)" as assets
+    component "Source Code" as src
+}
+
+' GitHub Platform
+cloud "GitHub" as github {
+    component "Repository" as repo
+    component "check.yml" as ci
+    component "deploy.yml" as cd
+}
+
+' CI/CD Runners
+node "GitHub Actions Runners" as runners {
+    component "Ubuntu Runner" as ubuntu
+    component "Windows Runner" as windows  
+    component "macOS Runner" as macos
+    component "Python 3.9-3.11" as python
+}
+
+' Deployment Target
+cloud "PyPI" as pypi {
+    artifact "FlappyPy Package" as package
+}
+
+' Deployment Flow
+dev --> github : git push
+github --> runners : trigger workflows
+runners --> runners : run tests
+runners --> pypi : deploy package
+ci --> runners : test on multiple platforms
+cd --> pypi : semantic release
+
+' Dependencies
+game ..> assets : uses
+src ..> game : contains
+repo ..> ci : contains
+repo ..> cd : contains
+ubuntu ..> python : uses
+windows ..> python : uses
+macos ..> python : uses
+
+@enduml

@@ -1,0 +1,101 @@
+@startuml
+title FlappyPy Game - State Diagram
+
+[*] --> Initializing
+
+state Initializing {
+  [*] --> LoadingPygame
+  LoadingPygame --> LoadingResources : pygame.init()
+  LoadingResources --> CreatingObjects : Load images, sounds, music
+  CreatingObjects --> StartingMusic : Create bird, score, pipes
+  StartingMusic --> [*] : Background music starts
+}
+
+Initializing --> NormalGameplay : Setup complete
+
+state NormalGameplay {
+  [*] --> BirdFalling
+  
+  state BirdFalling {
+    BirdFalling : entry / Set falling sprite
+    BirdFalling : do / Apply gravity
+    BirdFalling : do / Update position
+  }
+  
+  state BirdFlying {
+    BirdFlying : entry / Set flying sprite
+    BirdFlying : entry / Apply jump velocity
+    BirdFlying : do / Apply gravity
+    BirdFlying : do / Update position
+  }
+  
+  BirdFalling --> BirdFlying : SPACE key pressed / bird.flap(), bird.jump()
+  BirdFlying --> BirdFalling : SPACE key released / bird.stop_flapping()
+  
+  state PipeManagement {
+    PipeManagement : do / Update pipe positions
+    PipeManagement : do / Remove off-screen pipes
+    PipeManagement : do / Spawn new pipes every 120 frames
+  }
+  
+  state CollisionDetection {
+    CollisionDetection : do / Check bird-pipe collisions
+    CollisionDetection : do / Check bird-ground collisions
+    CollisionDetection : do / Check bird-ceiling collisions
+  }
+  
+  state ScoreManagement {
+    ScoreManagement : do / Check if bird passed pipe
+    ScoreManagement : do / Increment score
+    ScoreManagement : do / Play score sound
+  }
+  
+  BirdFalling --> PipeManagement
+  BirdFlying --> PipeManagement
+  PipeManagement --> CollisionDetection
+  CollisionDetection --> ScoreManagement : No collision
+  ScoreManagement --> BirdFalling : Continue gameplay
+}
+
+state GameOver {
+  GameOver : entry / Play game over sound
+  GameOver : entry / Stop background music
+  GameOver : do / Show game over screen
+  GameOver : do / Display final score
+  GameOver : do / Show restart message
+}
+
+state WaitingForRestart {
+  WaitingForRestart : do / Display game over screen
+  WaitingForRestart : do / Wait for user input
+}
+
+NormalGameplay --> GameOver : Collision detected
+GameOver --> WaitingForRestart : Game over screen displayed
+
+WaitingForRestart --> Initializing : SPACE key pressed / Reset game state
+WaitingForRestart --> [*] : QUIT event
+
+NormalGameplay --> [*] : QUIT event
+GameOver --> [*] : QUIT event
+Initializing --> [*] : QUIT event
+
+note right of NormalGameplay
+  Main game loop running at 60 FPS
+  Handles user input, physics, and rendering
+end note
+
+note right of GameOver
+  Triggered by:
+  - Bird collision with pipe
+  - Bird collision with ground
+  - Bird collision with ceiling
+end note
+
+note right of WaitingForRestart
+  Game over state persists until:
+  - User presses SPACE to restart
+  - User closes the game window
+end note
+
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+title FlappyPy Game - Activity Diagram
+
+start
+:Initialize Game;
+:Load Resources;
+:Create Window;
+
+:Handle User Input;
+
+if (Quit?) then (yes)
+  :Shutdown;
+  stop
+else (no)
+  :Update Game State;
+  :Check Collisions;
+  :Update Score;
+  :Render Graphics;
+  :Control Frame Rate;
+endif
+
+stop
+@enduml

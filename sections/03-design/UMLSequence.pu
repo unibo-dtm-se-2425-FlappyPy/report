@@ -1,0 +1,45 @@
+@startuml
+actor User
+participant "Main Game Loop" as Loop
+participant Bird
+participant Pipes
+participant Score
+participant "Sound System" as Sound
+participant Screen
+
+User -> Loop: Start Game
+Loop -> Bird: Initialize Bird
+Loop -> Pipes: Initialize Pipes List
+Loop -> Score: Initialize Score
+Loop -> Sound: Load Sounds and Music
+Loop -> Screen: Create Game Window
+
+== Main Game Loop Iteration ==
+User -> Loop: Press SPACE
+Loop -> Bird: bird.flap(), bird.jump()
+Loop -> Sound: Play bird_sound
+Loop -> Loop: Update Bird position
+Loop -> Loop: Update Pipes positions
+Loop -> Loop: Check Collisions with Pipes and Ground
+
+alt Collision Detected
+    Loop -> Sound: Play gameover_sound
+    Loop -> Sound: Stop music
+    Loop -> Screen: Show Game Over Screen
+else No Collision
+    Loop -> Score: Check and update score
+    Loop -> Sound: Play score_sound (if scored)
+    Loop -> Screen: Draw Pipes
+    Loop -> Screen: Draw Bird
+    Loop -> Screen: Draw Score
+end
+
+Loop -> Screen: Update Display
+Loop -> Loop: Wait for next frame (clock.tick(FPS))
+
+User -> Loop: Release SPACE
+Loop -> Bird: bird.stop_flapping()
+
+User -> Loop: Press SPACE (if game over)
+Loop -> Loop: Reset Game
+@enduml

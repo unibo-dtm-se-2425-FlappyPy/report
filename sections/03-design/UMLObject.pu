@@ -1,0 +1,157 @@
+@startuml
+title FlappyPy Game - Object Diagram (Runtime Snapshot)
+
+' Main game objects
+object bird {
+  x = 50
+  y = 300
+  width = 30
+  height = 30
+  velocity = -2.5
+  gravity = 0.5
+  is_flying = true
+  current_sprite = flying_sprite
+}
+
+object pipe1 {
+  x = 400
+  width = 70
+  gap_center_y = 200
+  gap_size = 150
+  scored = false
+  speed = 3
+  top_height = 125
+  bottom_y = 275
+  bottom_height = 325
+}
+
+object pipe2 {
+  x = 640
+  width = 70
+  gap_center_y = 350
+  gap_size = 150
+  scored = false
+  speed = 3
+  top_height = 275
+  bottom_y = 425
+  bottom_height = 175
+}
+
+object pipe3 {
+  x = 880
+  width = 70
+  gap_center_y = 180
+  gap_size = 150
+  scored = false
+  speed = 3
+  top_height = 105
+  bottom_y = 255
+  bottom_height = 345
+}
+
+object score {
+  current_score = 2
+}
+
+' Game system objects
+object screen {
+  width = 400
+  height = 600
+  caption = "FlappyPy"
+}
+
+object clock {
+  fps = 60
+}
+
+object bird_sound {
+  filename = "bird.mp3"
+  loaded = true
+}
+
+object score_sound {
+  filename = "score.mp3"
+  loaded = true
+}
+
+object gameover_sound {
+  filename = "gameover.mp3"
+  loaded = true
+}
+
+object background_music {
+  filename = "music.mp3"
+  playing = true
+  loop = -1
+}
+
+' Sprite objects
+object falling_sprite {
+  filename = "bird.png"
+  surface = pygame.Surface
+}
+
+object flying_sprite {
+  filename = "bird-spaced.png"
+  surface = pygame.Surface
+}
+
+' Collections
+object pipes_list {
+  type = list
+  elements = [pipe1, pipe2, pipe3]
+}
+
+object font {
+  size = 36
+  name = "default"
+}
+
+' Relationships
+bird --> falling_sprite : uses when not flying
+bird --> flying_sprite : uses when flying
+bird --> pipe1 : checks collision
+bird --> pipe2 : checks collision
+bird --> pipe3 : checks collision
+
+pipes_list --> pipe1 : contains
+pipes_list --> pipe2 : contains
+pipes_list --> pipe3 : contains
+
+score --> bird : incremented when bird passes pipe
+score --> pipe1 : checks if bird passed
+score --> pipe2 : checks if bird passed
+score --> pipe3 : checks if bird passed
+
+screen --> bird : renders
+screen --> pipes_list : renders all pipes
+screen --> score : displays score text
+
+' Notes
+note right of bird
+  Player-controlled character
+  Currently flying upward
+  Position and velocity updated
+  each frame
+end note
+
+note right of pipes_list
+  Dynamic collection of obstacles
+  Pipes spawn every 120 frames
+  Off-screen pipes are removed
+  Each pipe moves left at 3 px/frame
+end note
+
+note right of score
+  Tracks player progress
+  Incremented when bird passes
+  through pipe gap successfully
+end note
+
+note bottom of screen
+  Main rendering surface
+  Draws all game objects
+  Updated at 60 FPS
+end note
+
+@enduml

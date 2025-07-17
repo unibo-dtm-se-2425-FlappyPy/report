@@ -1,0 +1,110 @@
+@startuml
+title FlappyPy Game - Class Diagram
+
+' Game Classes
+class Bird {
+  ' Attributes
+  -x: int
+  -y: int
+  -width: int
+  -height: int
+  -velocity: float
+  -gravity: float
+  -falling_sprite: pygame.Surface
+  -flying_sprite: pygame.Surface
+  -is_flying: bool
+  -current_sprite: pygame.Surface
+  -rect: pygame.Rect
+  
+  ' Methods
+  +__init__()
+  +flap()
+  +stop_flapping()
+  +update()
+  +check_boundaries()
+  +draw(screen)
+  +jump()
+  +get_rect(): pygame.Rect
+  +check_collision_with_pipe(pipe: Pipe): bool
+  +check_collision_with_ground(): bool
+  +check_collision_with_ceiling(): bool
+}
+
+class Pipe {
+  ' Attributes
+  -x: int
+  -width: int
+  -gap_center_y: int
+  -gap_size: int
+  -scored: bool
+  -speed: int
+  -top_height: int
+  -bottom_y: int
+  -bottom_height: int
+  
+  ' Methods
+  +__init__(x: int, gap_center_y: int)
+  +update()
+  +draw(screen)
+}
+
+class Score {
+  ' Attributes
+  -current_score: int
+  
+  ' Methods
+  +__init__()
+  +get_current_score(): int
+  +add_point()
+}
+
+' Utility Functions (shown as a utility class for diagram completeness)
+class GameUtilities <<utility>> {
+  ' Static Methods
+  +load_image(filename: str): pygame.Surface
+  +load_sound(filename: str): pygame.mixer.Sound
+  +load_music(filename: str): str
+  +show_game_over_screen(screen, font, score: Score)
+  +main()
+}
+
+' External Dependencies
+class pygame.Surface <<external>>
+class pygame.Rect <<external>>
+class pygame.mixer.Sound <<external>>
+
+' Relationships
+Bird --> Pipe : checks collision with
+Bird --> pygame.Surface : uses for sprites
+Bird --> pygame.Rect : uses for collision detection
+GameUtilities --> Score : displays score
+GameUtilities --> Bird : manages bird instance
+GameUtilities --> Pipe : manages pipe instances
+GameUtilities --> pygame.Surface : loads images
+GameUtilities --> pygame.mixer.Sound : loads sounds
+
+' Notes
+note right of Bird
+  Main player character with
+  physics simulation and
+  collision detection
+end note
+
+note right of Pipe
+  Moving obstacles that
+  the bird must navigate
+  through
+end note
+
+note right of Score
+  Simple scoring system
+  that tracks player
+  progress
+end note
+
+note right of GameUtilities
+  Contains utility functions
+  and main game loop
+end note
+
+@enduml
