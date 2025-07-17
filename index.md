@@ -15,17 +15,17 @@ nav_order: 1
 
 FlappyPy represents a **comprehensive educational software engineering project** that transforms the classic Flappy Bird gaming experience into a professional Python 3.9+ implementation showcasing industry-standard development practices. The project demonstrates complete software development lifecycle execution from initial concept through GitHub release deployment, featuring physics-based gameplay mechanics, comprehensive collision detection systems, and automated testing architecture spanning 55+ tests across 9 modules.
 
-![FlappyPy Gameplay Screenshot](images/gameplay-screenshot.png)
+![FlappyPy Gameplay Screenshot](pictures/gameplay-screenshot.png)
 *Main gameplay showing bird navigation through pipe obstacles*
 
 The technical implementation embraces **object-oriented programming principles** with clean architecture separating concerns across Bird physics, Pipe generation, collision detection, and scoring systems. The scoring component uniquely demonstrates Test-Driven Development methodology for educational value, while the broader system employs conventional development practices with comprehensive post-implementation testing validation.
 
-![FlappyPy Game Over Screen](images/game-over-screenshot.png)
+![FlappyPy Game Over Screen](pictures/game-over-screenshot.png)
 *Game over state with restart functionality*
 
 **Professional deployment practices** include automated GitHub Actions CI/CD pipelines that validate code quality across Windows, macOS, and Linux platforms with Python 3.9-3.11 compatibility before creating GitHub releases with Apache 2.0 licensing. The educational-focused distribution strategy prioritizes accessibility and learning value while demonstrating industry-standard version control, semantic versioning, and quality assurance methodologies essential for software engineering education.
 
-![FlappyPy Architecture Diagram](images/architecture-overview.png)
+![FlappyPy Architecture Diagram](pictures/architecture-overview.png)
 *High-level system architecture and component relationships*
 
 ## Project Highlights
@@ -37,9 +37,6 @@ The technical implementation embraces **object-oriented programming principles**
 - Apache 2.0 licensing for educational accessibility
 
 **Educational Value:** FlappyPy serves as a complete software engineering learning resource, demonstrating professional development workflows from requirements analysis through deployment while maintaining engaging gameplay that showcases physics simulation, collision detection algorithms, and real-time graphics rendering capabilities.
-
-![FlappyPy Development Workflow](images/development-process.png)
-*Complete development lifecycle from concept to deployment*
 
 ## Disclaimer
 
