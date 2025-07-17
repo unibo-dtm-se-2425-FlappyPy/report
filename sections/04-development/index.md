@@ -13,7 +13,7 @@ nav_order: 5
 **Branch Management:**
 - **main branch**: Production-ready code for releases
 - **dev branch**: Integration branch for completed features
-- **feature branches**: Individual development work (e.g., `feature/collision-detection`, `feature/pipe-obstacles`)
+- **feature branches**: Individual development work (e.g., `feature/collision-detection`, `feature/foundation`)
 
 **Branching Conventions:**
 - Feature branches created from `dev` branch
@@ -23,23 +23,22 @@ nav_order: 5
 
 ### Commit Message Conventions
 
-**Format**: `type: description`
+**Format**: `Action verb following by description`
 
 **Commit Types:**
-- `feat`: New game features (collision detection, pipe generation)
-- `fix`: Bug fixes and corrections
-- `test`: Adding or modifying unit tests
-- `docs`: Documentation updates
-- `refactor`: Code improvements without functional changes
+- `Implement`: New game components
+- `Fix`: Bug fixes and corrections
+- `Write`: Adding or modifying unit tests
+- `Modify`: Documentation updates
+- `Refactor`: Code improvements without functional changes
 
 **Examples:**
 ```markdown
-- feat: implement collision detection for pipes and ground
-- fix: resolve bird falling through bottom boundary
-- test: add comprehensive boundary collision tests
-- docs: update README with installation instructions
+- Implement the sound effects and background music.
+- Fix path error of loading assets for different Python versions.
+- Write test for "Game Over" screen.
+- Modify README and CHANGELOG to release new version 1.2.1.
 ```
-
 
 ### Release Management
 
@@ -51,45 +50,14 @@ nav_order: 5
 **Release Process:**
 1. Create annotated git tag: `git tag -a 'X.Y.Z' -m 'Release description'`
 2. Push tag: `git push --follow-tags`
-3. GitHub Actions automatically deploys to PyPI
+3. GitHub Actions automatically tests and deploys.
 
-## Implementation Details
-
-### Game Architecture Patterns
-
-**Main Game Loop Pattern:**
-- Event-driven architecture using pygame's event system
-- Single-threaded execution with frame-based timing
-- Sequential processing: Input → Physics → Collision → Render
-
-**Object-Oriented Design:**
-- `Bird` class encapsulates player entity behavior
-- `Pipe` class manages obstacle generation and movement
-- Clean separation of concerns between game objects
-
-**Collision Detection Algorithm:**
-- Rectangle-based collision using `pygame.Rect.colliderect()`
-- Separate collision methods for different object types
-- Frame-perfect collision detection for responsive gameplay
-
-### Data Management
-
-**Runtime Data Structure:**
-- Game state stored in local variables within main loop
-- Pipe obstacles managed in Python list structure
-- No persistent storage in v1.0.0 (session-based gameplay)
-
-**Memory Management:**
-- Automatic cleanup of off-screen game objects
-- Python garbage collection handles object lifecycle
-- No memory leaks through proper list management
-
-## Technological Details
+## Technical Details
 
 ### Core Technologies
 
 **Programming Language:**
-- **Python 3.8+**: Educational requirement and cross-platform compatibility
+- **Python 3.9+**: Educational requirement and cross-platform compatibility
 - **Object-oriented paradigm**: Clear class structure and encapsulation
 
 **Graphics and Input:**
@@ -106,26 +74,25 @@ nav_order: 5
 
 **Runtime Dependencies:**
 ```markdown
-pygame==2.6.1
-setuptools==80.9.0
+pygame==2.6.1           # Game engin
+setuptools==80.9.0      # Python package handler
 ```
 
 **Development Dependencies:**
 ```markdown
-pytest>=8.4.1 # Unit testing framework
-build>=0.6.0 # Package building
-twine>=3.4.2 # PyPI deployment
+pytest>=8.4.1   # Unit testing framework
+build>=0.6.0    # Package building
+twine>=3.4.2    # PyPI deployment
 ```
 
 ### Testing Framework
 
 **Unit Testing:**
 - **unittest**: Python's built-in testing framework
-- **44+ comprehensive tests** across 6 test modules
-- **Test categories**: Foundation, Bird physics, Collision detection, Boundary checking, Pipe generation
+- **55+ unit tests** across 9 test modules
+- **Test categories**: Foundation, Bird physics, Physics (movement and gravity), Boundary checking, Pipe generation, Collision detection, Score display, Game over display, Scoring system
 
 **Testing Strategy:**
-- Test-driven development approach
 - Individual component testing with isolated unit tests
 - Integration testing for system-wide functionality
 - Automated testing via GitHub Actions CI/CD
@@ -133,54 +100,52 @@ twine>=3.4.2 # PyPI deployment
 ### Build and Deployment
 
 **Package Management:**
-- **setuptools**: Python package configuration and building
-- **PyPI distribution**: Automated release via GitHub Actions
+- `setuptools`: Python package configuration and building
 - **Semantic versioning**: Git tag-based release management
 
 **Continuous Integration:**
 - **GitHub Actions**: Automated testing on multiple OS and Python versions
-- **Test matrix**: Windows, macOS, Linux × Python 3.8-3.11
-- **Deployment**: Automatic PyPI release on successful test completion
+- **Test matrix**: Windows, macOS, Linux × Python 3.9 - 3.11
+- **Deployment**: Automatic release on successful test completion
 
 **Installation Method:**
-```markdown
-pip install FlappyPy
-python -m FlappyPy
+```bash
+git clone https://github.com/unibo-dtm-se-2425-FlappyPy/artifact.git
+cd artifact
+pip install -r requirements.txt
 ```
 
 ### Development Environment
 
 **No External Services:**
-- Self-contained desktop application
-- No network dependencies or external APIs
-- No database requirements
-- No authentication or authorization systems
+- Self-contained desktop application.
+- No network dependencies or external APIs.
+- No database requirements.
+- No authentication or authorization systems.
 
 **Cross-Platform Support:**
 - Compatible with Windows, macOS, and Linux
-- Consistent gameplay experience across platforms
 - Standard Python installation requirements only
 
 ### Code Organization
 
 **Package Structure:**
 ```markdown
-FlappyPy/
-├── init.py # Package initialization
-├── main.py # Entry point for python -m FlappyPy
-└── main.py # Complete game implementation
+FlappyPy/                      # Main game package
+├── assets/                    # Game assets
+├── __init__.py                # Package initialization
+├── __main__.py                # Game entry point
+└── main.py                    # Complete game
 
 test/
-├── test_foundation.py # Core game setup tests
-├── test_bird.py # Bird physics tests
-├── test_physics.py # Movement and gravity tests
-├── test_boundary.py # Screen boundary tests
-├── test_pipe.py # Pipe generation tests
-└── test_collision.py # Collision detection tests
+├── __init__.py                # Test package initialization
+├── test_foundation.py         # Core game setup tests
+├── test_bird.py               # Bird physics tests
+├── test_physics.py            # Movement and gravity tests
+├── test_boundary.py           # Screen boundary tests
+├── test_pipe.py               # Pipe generation tests
+├── test_collision.py          # Collision detection tests
+├── test_score_display.py      # Scoring display test
+├── test_game_over_display.py  # Scoring display test
+└── test_scoring.py            # Scoring system tests
 ```
-
-**Design Principles:**
-- **Single responsibility**: Each class handles one aspect of gameplay
-- **Encapsulation**: Game objects manage their own state and behavior
-- **Testability**: Clean interfaces enable comprehensive unit testing
-- **Maintainability**: Clear code structure for educational purposes
