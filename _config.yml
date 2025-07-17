@@ -1,5 +1,5 @@
 title: FlappyPy
-description: A Python implementation of the classic Flappy Bird game, developed using pygame.
+description: A Python implementation of the classic Flappy Bird game built with pygame.
 remote_theme: pmarsceill/just-the-docs
 color_scheme: "light"
 search_enabled: true

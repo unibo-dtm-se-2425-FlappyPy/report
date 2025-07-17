@@ -12,9 +12,8 @@ FlappyPy is a **desktop application** developed as a complete Python implementat
 
 - **Interactive Desktop Game Application** - A standalone executable game with real-time graphics and user input
 - **Educational Software Package** - Demonstrates professional Python game development practices
-- **Installable Python Package** - Distributed via PyPI for easy installation and execution
 
-The application utilizes the pygame library for graphics rendering, input handling, and game loop management, creating a smooth 60 FPS gaming experience on desktop platforms.
+The application utilizes the **pygame** library for graphics rendering, input handling, and game loop management, creating a smooth 60 FPS gaming experience on desktop platforms.
 
 ## Use Case Collection
 
@@ -32,20 +31,20 @@ The application utilizes the pygame library for graphics rendering, input handli
 ### Interaction Patterns
 
 **When and How Frequently:**
-- **Casual Gaming Sessions** - 5-15 minute entertainment breaks throughout the day
-- **Development Study** - Extended sessions (30-60 minutes) for code analysis and learning
+- **Casual Gaming Sessions** - Entertainment breaks throughout the day
+- **Development Study** - Sessions for code analysis and learning
 - **Educational Demonstrations** - Scheduled classroom or workshop sessions
 
 **Interaction Method:**
 - **Primary Input Device** - Computer keyboard (spacebar for jumping)
 - **Platform** - Desktop computers (Windows, macOS, Linux)
-- **Installation** - Command-line installation via `pip install FlappyPy`
+- **Installation** - Git clone repository: `git clone https://github.com/unibo-dtm-se-2425-FlappyPy/artifact.git` followed by `cd artifact` and then `pip install -r requirements.txt`
 - **Execution** - Terminal command: `python -m FlappyPy`
 
 ### Data Storage and Management
 
 **User Data Requirements:**
-- **No Persistent Data Storage** - FlappyPy v1.0.0 does not store user data, scores, or preferences
+- **No Persistent Data Storage** - FlappyPy v1.2.1 does not store user data, scores, or preferences
 - **Session-Based Experience** - Each game session is independent with no saved progress
 - **Local Execution** - All game state exists only during active gameplay in system memory
 
@@ -62,11 +61,6 @@ The application utilizes the pygame library for graphics rendering, input handli
 - Restart game sessions after collision
 
 **Developer/Learner:**
-- Install package via pip
+- Install package via Github repository
 - Examine source code for educational purposes
 - Run comprehensive test suite for learning testing practices
-
-**System Administrator:**
-- Install Python environment and dependencies
-- Ensure pygame library compatibility
-- Manage package installation and updates
