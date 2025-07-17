@@ -6,70 +6,29 @@ nav_order: 10
 
 # User Guide
 
-This guide explains how to install, launch, and play FlappyPy from the user's perspective.
+## Quick Start
 
-## Installation
+FlappyPy delivers **immediate gaming satisfaction** through a streamlined installation process requiring only Python 3.9+ and git access. The educational-friendly design eliminates complex configuration, enabling players to experience classic Flappy Bird gameplay within minutes of download completion.
 
-**Requirements:**
-- Python 3.9 or higher installed on your system
-- Git for cloning the repository
-- Internet connection for downloading
-
-**Install FlappyPy:**
 ```bash
 git clone https://github.com/unibo-dtm-se-2425-FlappyPy/artifact.git
 cd artifact
 pip install -r requirements.txt
-```
-
-## Launching the Game
-
-**Start FlappyPy:**
-```bash
-cd artifact
 python -m FlappyPy
 ```
 
-A game window (400x600 pixels) will open immediately, and you're ready to play!
+The game launches instantly in a 400x600 pixel window, ready for spacebar-controlled bird navigation through randomly positioned pipe obstacles.
 
-## How to Play
+## Gameplay Mechanics
 
-**Spacebar** - Your only control:
-- **During gameplay**: Makes the bird flap upward
-- **After game over**: Restarts the game
+The **spacebar serves as your complete control interface**, providing upward thrust during gameplay and restart functionality after collision events. Navigate through continuously moving pipe obstacles that generate with randomized gap positions, creating unique challenge patterns while maintaining consistent horizontal movement speed and physics-based gravity effects.
 
-**Game Objective:** Navigate through pipe gaps without hitting anything.
+**Game Objective:** Successfully pass through pipe gaps without collision to achieve maximum scoring.
 
-**Game Mechanics:**
-- **Gravity**: Bird constantly falls downward
-- **Jumping**: Spacebar applies upward momentum
-- **Obstacles**: Pipes move from right to left with random gap positions
-- **Collision**: Hitting pipes or ground triggers game over
+## Support and Technical Details
 
-## Troubleshooting
+**Common Issues:** Window focus problems can affect spacebar responsiveness (click game window), while pygame installation issues resolve through dependency reinstallation via `pip install -r requirements.txt`.
 
-**Game window doesn't open:**
-- Verify Python 3.9+ is installed: `python --version`
-- Ensure pygame installed: `python -c "import pygame; print('pygame working')"`
-- Reinstall dependencies: `pip install -r requirements.txt`
+**System Compatibility:** Windows, macOS, and Linux with Python 3.9-3.11 support, requiring minimal system resources (< 50 MB memory, < 10 MB disk space) while targeting smooth 60 FPS performance.
 
-**Spacebar not responding:**
-- Ensure the game window has focus (click on it)
-- Check if other applications are capturing keyboard input
-
-## Technical Specifications
-
-**System Requirements:**
-- **Operating System**: Windows, macOS, or Linux
-- **Python**: Version 3.9, 3.10, or 3.11
-- **Memory**: < 50 MB
-- **Disk Space**: < 10 MB
-
-**Performance:** 60 FPS target with immediate input response
-
-## Getting Help
-
-**For Issues:**
-- Check the [GitHub repository](https://github.com/unibo-dtm-se-2425-FlappyPy/artifact) for known issues
-- Create a new issue if you encounter problems
-- Include your Python version and operating system in bug reports
+**Additional Help:** Visit the [GitHub repository](https://github.com/unibo-dtm-se-2425-FlappyPy/artifact) for issue reporting and include your Python version plus operating system details for effective troubleshooting assistance.

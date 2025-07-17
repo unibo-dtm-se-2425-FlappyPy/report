@@ -8,152 +8,50 @@ nav_order: 5
 
 ## Development Approach
 
-**Hybrid Development Methodology**
+FlappyPy employs a **Hybrid Development Methodology** that strategically combines conventional development practices with Test-Driven Development based on component complexity and educational value. The majority of core game components including foundation systems, bird physics, collision detection, and pipe generation were developed using conventional methodology involving requirements analysis, implementation-first approach, comprehensive post-implementation testing, and iterative refinement for quality improvement.
 
-FlappyPy was developed using a combination of development approaches:
+The **scoring system** uniquely demonstrates systematic Test-Driven Development methodology, beginning with failing test cases that define expected scoring behavior, implementing minimal code to achieve test passage, refactoring for clean logic while maintaining coverage, and building features incrementally with continuous validation. This selective TDD approach provides educational value while maintaining development efficiency for the broader system.
 
-**Conventional Development Approach - Core Game Components:**
+## Version Control Strategy
 
-The majority of game components (foundation, bird physics, collision detection, pipe generation) were developed using conventional development methodology:
+### Git Workflow and Release Management
 
-1. **Requirements analysis** - Define component specifications and behavior
-2. **Implementation first** - Develop game mechanics based on requirements
-3. **Post-implementation testing** - Write comprehensive tests after code completion
-4. **Iterative refinement** - Improve code quality and add edge case handling
+The project employs a structured branching strategy with **main branch** for production releases, **dev branch** for feature integration, and **feature branches** for individual development work following `feature/descriptive-name` conventions. The release process utilizes semantic versioning with annotated git tags, automated GitHub Actions testing and deployment, culminating in **GitHub releases** for package distribution.
 
-**Test-Driven Development (TDD) - Scoring System Only:**
+**Commit conventions** follow action-verb patterns including Implement for new components, Fix for corrections, Write for test modifications, and Modify for documentation updates, ensuring clear development history and professional collaboration standards.
 
-The scoring system components were developed using systematic Test-Driven Development:
+## Technical Implementation
 
-1. **Write failing tests first** - Define expected scoring behavior through test cases
-2. **Implement minimal code** - Write just enough code to make scoring tests pass
-3. **Refactor and improve** - Clean up scoring logic while maintaining test coverage
-4. **Iterate incrementally** - Build scoring features step-by-step with continuous validation
+### Core Technologies and Dependencies
 
-## DVCS
-
-### Git Workflow Strategy
-
-**Branch Management:**
-- **main branch**: Production-ready code for releases
-- **dev branch**: Integration branch for completed features
-- **feature branches**: Individual development work (e.g., `feature/collision-detection`, `feature/foundation`)
-
-**Branching Conventions:**
-- Feature branches created from `dev` branch
-- Branch naming: `feature/descriptive-name`
-- Regular merging from `dev` to keep feature branches current
-- Clean merge to `dev` when features complete
-
-### Commit Message Conventions
-
-**Format**: `Action verb following by description`
-
-**Commit Types:**
-- `Implement`: New game components
-- `Fix`: Bug fixes and corrections
-- `Write`: Adding or modifying unit tests
-- `Modify`: Documentation updates
-- `Refactor`: Code improvements without functional changes
-
-**Examples:**
-```markdown
-- Implement the sound effects and background music.
-- Fix path error of loading assets for different Python versions.
-- Write test for "Game Over" screen.
-- Modify README and CHANGELOG to release new version 1.2.1.
-```
-
-### Release Management
-
-**Semantic Versioning:**
-- **v1.0.0**: Initial release with core gameplay mechanics
-- **v1.x.x**: Future patches and minor feature additions
-- **v2.x.x**: Major feature additions or breaking changes
-
-**Release Process:**
-1. Create annotated git tag: `git tag -a 'X.Y.Z' -m 'Release description'`
-2. Push tag: `git push --follow-tags`
-3. GitHub Actions automatically tests and deploys.
-
-## Technical Details
-
-### Core Technologies
-
-**Programming Language:**
-- **Python 3.9+**: Educational requirement and cross-platform compatibility
-- **Object-oriented paradigm**: Clear class structure and encapsulation
-
-**Graphics and Input:**
-- **pygame 2.6.1**: Industry-standard Python game development library
-- **Provides**: Graphics rendering, input handling, collision detection, timing
-
-**Why pygame?**
-- Extensive documentation and community support
-- Built-in collision detection with `pygame.Rect`
-- Cross-platform compatibility (Windows, macOS, Linux)
-- Educational accessibility for Python developers
-
-### Development Dependencies
-
-**Runtime Dependencies:**
-```markdown
-pygame==2.6.1           # Game engin
-setuptools==80.9.0      # Python package handler
-```
+FlappyPy leverages **Python 3.9+** for educational accessibility and cross-platform compatibility, implementing object-oriented paradigms with clear class structure and encapsulation. The graphics foundation utilizes **pygame 2.6.1** as the industry-standard Python game development library, providing comprehensive graphics rendering, input handling, collision detection, and timing capabilities with extensive documentation and built-in collision detection through `pygame.Rect`.
 
 **Development Dependencies:**
-```markdown
-pytest>=8.4.1   # Unit testing framework
-build>=0.6.0    # Package building
-twine>=3.4.2    # PyPI deployment
-```
+- Runtime: `pygame==2.6.1`, `setuptools==80.9.0`
+- Development: `pytest>=8.4.1`, `build>=0.6.0` for package building
+- GitHub releases deployment (replacing previous PyPI approach)
 
-### Testing Framework
+### Testing and Quality Assurance
 
-**Unit Testing:**
-- **unittest**: Python's built-in testing framework
-- **55+ unit tests** across 9 test modules
-- **Test categories**: Foundation, Bird physics, Physics (movement and gravity), Boundary checking, Pipe generation, Collision detection, Score display, Game over display, Scoring system
+The comprehensive testing strategy employs **Python's unittest framework** with **55+ unit tests across 9 test modules** covering Foundation, Bird physics, Physics systems, Boundary checking, Pipe generation, Collision detection, Score display, Game over display, and Scoring system components. Testing includes individual component isolation, integration testing for system-wide functionality, and automated validation through GitHub Actions CI/CD across Windows, macOS, and Linux platforms with Python 3.9-3.11 compatibility.
 
-**Testing Strategy:**
-- Individual component testing with isolated unit tests
-- Integration testing for system-wide functionality
-- Automated testing via GitHub Actions CI/CD
+### Deployment and Environment
 
-### Build and Deployment
+The project architecture emphasizes simplicity and educational accessibility through a **self-contained desktop application** requiring no external services, network dependencies, databases, or authentication systems. Cross-platform support ensures compatibility across Windows, macOS, and Linux with standard Python installation requirements.
 
-**Package Management:**
-- `setuptools`: Python package configuration and building
-- **Semantic versioning**: Git tag-based release management
+**Package management** utilizes setuptools for configuration and building with git tag-based semantic versioning, while **continuous integration** through GitHub Actions provides automated testing across multiple operating systems and Python versions, with automatic **GitHub releases** upon successful test completion.
 
-**Continuous Integration:**
-- **GitHub Actions**: Automated testing on multiple OS and Python versions
-- **Test matrix**: Windows, macOS, Linux × Python 3.9 - 3.11
-- **Deployment**: Automatic release on successful test completion
-
-**Installation Method:**
+**Installation follows GitHub-based workflow:**
 ```bash
 git clone https://github.com/unibo-dtm-se-2425-FlappyPy/artifact.git
 cd artifact
 pip install -r requirements.txt
 ```
 
-### Development Environment
-
-**No External Services:**
-- Self-contained desktop application.
-- No network dependencies or external APIs.
-- No database requirements.
-- No authentication or authorization systems.
-
-**Cross-Platform Support:**
-- Compatible with Windows, macOS, and Linux
-- Standard Python installation requirements only
-
 ### Code Organization
 
-**Package Structure:**
+The package structure maintains clear separation between game logic and testing components:
+
 ```markdown
 FlappyPy/                      # Main game package
 ├── assets/                    # Game assets
@@ -161,15 +59,14 @@ FlappyPy/                      # Main game package
 ├── __main__.py                # Game entry point
 └── main.py                    # Complete game
 
-test/
-├── __init__.py                # Test package initialization
+test/                          # Comprehensive testing suite
 ├── test_foundation.py         # Core game setup tests
 ├── test_bird.py               # Bird physics tests
 ├── test_physics.py            # Movement and gravity tests
 ├── test_boundary.py           # Screen boundary tests
 ├── test_pipe.py               # Pipe generation tests
 ├── test_collision.py          # Collision detection tests
-├── test_score_display.py      # Scoring display test
-├── test_game_over_display.py  # Scoring display test
+├── test_score_display.py      # Scoring display tests
+├── test_game_over_display.py  # Game over display tests
 └── test_scoring.py            # Scoring system tests
 ```

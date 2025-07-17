@@ -6,96 +6,32 @@ nav_order: 11
 
 # Developer Guide
 
-This guide explains how to contribute to the FlappyPy project.
+## Environment and Workflow
 
-## Development Environment Setup
+FlappyPy embraces **educational-friendly development practices** that demonstrate professional software engineering while maintaining accessibility for learning purposes. The environment setup requires Python 3.9+ and git for collaborative development, followed by virtual environment creation and dependency installation for immediate development readiness.
 
-**Required Software:**
-- **Python 3.9+** - FlappyPy supports Python 3.9, 3.10, and 3.11
-- **Git** - For version control and collaboration
-
-**Setup:**
 ```bash
 git clone https://github.com/unibo-dtm-se-2425-FlappyPy/artifact.git
 cd artifact
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
+python -m unittest discover -s test -t .  # Verify 55+ tests pass
 ```
 
-**Verify Installation:**
-```bash
-python -m unittest discover -s test -t .
-python -m FlappyPy
-```
+The **structured branching strategy** employs main for production releases, dev for feature integration, and descriptive feature branches for individual development work, ensuring clear separation between development stages and automated GitHub Actions integration for quality assurance.
 
-## Development Workflow
+## Testing and Code Quality
 
-**Branch Strategy:**
-- **main**: Production-ready code with tagged releases
-- **dev**: Integration branch for completed features
-- **feature/**: Individual feature development branches
+The comprehensive **55+ test suite spans 9 modules** covering foundation systems, bird physics, collision detection, scoring mechanisms, and display components, with the scoring system uniquely demonstrating Test-Driven Development methodology for educational value. Testing follows Python's unittest framework with discovery-based execution enabling both complete suite validation and targeted module testing for efficient development cycles.
 
-**Development Process:**
-1. Create feature branch from dev: `git checkout -b feature/descriptive-name`
-2. Make changes and commit: `git commit -m "feat: description"`
-3. Create pull request to dev branch
-4. Code review and merge after tests pass
+**Development Standards:**
+- PEP 8 compliance with 4-space indentation and 79-character line limits
+- Semantic commit messages (please! I know I've not used, but for any pull request it would be helpfull.): `feat:`, `fix:`, `test:`, `docs:`, `refactor:`
+- Code review requirements before dev branch integration
 
-## Testing
+## Release and Collaboration
 
-**Test Structure:**
-- **test/test_foundation.py**: Core game setup (6 tests)
-- **test/test_bird.py**: Bird physics (4 tests)
-- **test/test_physics.py**: Movement mechanics (7 tests)
-- **test/test_boundary.py**: Screen boundaries (8 tests)
-- **test/test_pipe.py**: Obstacle generation (8 tests)
-- **test/test_collision.py**: Collision detection (9 tests)
-- **test/test_score_display.py**: Score rendering (4 tests)
-- **test/test_game_over_display.py**: Game over screen (3 tests)
-- **test/test_scoring.py**: Score calculation (6 tests)
+**Automated release management** leverages semantic versioning with GitHub Actions integration, where annotated tags trigger comprehensive testing validation followed by automatic GitHub release creation. The quality-gated process ensures all 55+ tests pass across multiple platforms before any code reaches production, demonstrating professional CI/CD practices essential for educational software engineering understanding.
 
-**Running Tests:**
-```bash
-python -m unittest discover -s test -t .  # Run all 55+ tests
-python -m unittest test.test_collision     # Run specific test file
-```
-
-**TDD for Scoring System:** The scoring components follow Test-Driven Development practices.
-
-## Coding Conventions
-
-**Python Style Guide (PEP 8):**
-- **Indentation**: 4 spaces
-- **Line Length**: 79 characters maximum
-- **Naming**: `PascalCase` for classes, `snake_case` for functions/variables, `UPPER_CASE` for constants
-
-**Commit Message Format:**
-```
-type: brief description
-```
-
-Types: `feat`, `fix`, `test`, `docs`, `refactor`
-
-## Release Process
-
-**Version Management:** Semantic versioning (MAJOR.MINOR.PATCH)
-
-**Release Steps:**
-1. Merge all changes to main branch
-2. Run complete test suite: `python -m unittest discover -s test -t .`
-3. Create annotated tag: `git tag -a 'X.Y.Z' -m 'Release description'`
-4. Push tag: `git push --follow-tags`
-5. GitHub Actions automatically creates GitHub release
-
-**Quality Gates:**
-- All 55+ tests must pass
-- Game runs without errors on all platforms
-- Performance meets 60 FPS target
-
-## Getting Help
-
-**Resources:**
-- **GitHub Issues** - Bug reports and feature requests
-- **Pull Requests** - Code review and discussions
-- **README.md** - Project overview and setup instructions
+Development collaboration utilizes GitHub Issues for bug reports and feature requests, while Pull Requests facilitate code review discussions and maintain project quality standards through peer review processes.

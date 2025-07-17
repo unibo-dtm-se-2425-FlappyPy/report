@@ -8,59 +8,29 @@ nav_order: 2
 
 ## Product Type
 
-FlappyPy is a **desktop application** developed as a complete Python implementation of the classic Flappy Bird game. The product falls into the category of:
+FlappyPy is a **desktop game application** that brings the classic Flappy Bird experience to modern Python development. This educational software package demonstrates professional game development practices while delivering engaging entertainment through real-time graphics and responsive controls powered by the pygame library.
 
-- **Interactive Desktop Game Application** - A standalone executable game with real-time graphics and user input
-- **Educational Software Package** - Demonstrates professional Python game development practices
-
-The application utilizes the **pygame** library for graphics rendering, input handling, and game loop management, creating a smooth gaming experience on desktop platforms.
+The application serves dual purposes: providing immediate gaming satisfaction for casual players and offering a comprehensive learning resource for developers exploring Python game development, object-oriented design, and Test-Driven Development methodologies.
 
 ## Use Case Collection
 
 ### User Demographics and Context
 
-**Primary Users:**
-- **Casual Gamers** - Individuals seeking quick, engaging entertainment
-- **Python Developers** - Learning game development and pygame usage
-- **Students** - Studying software engineering and game development concepts
+FlappyPy targets a diverse audience spanning from casual gamers seeking quick entertainment during breaks to Python developers and students learning software engineering principles. The application particularly appeals to educators using it as a practical teaching example and code reviewers examining professional development practices including comprehensive testing strategies and clean architecture implementation.
 
-**Secondary Users:**
-- **Educators** - Using the project as a teaching example for Python development
-- **Code Reviewers** - Examining professional development practices and testing methodologies
+### Interaction and Installation
 
-### Interaction Patterns
+**Platform and Access:**
+The game runs seamlessly across Windows, macOS, and Linux desktop environments, requiring only Python 3.9+ and basic terminal access. Installation follows a straightforward GitHub-based workflow: users clone the repository, install dependencies via `pip install -r requirements.txt`, and launch with `python -m FlappyPy`. The spacebar serves as the primary control mechanism, providing intuitive bird navigation through pipe obstacles.
 
-**When and How Frequently:**
-- **Casual Gaming Sessions** - Entertainment breaks throughout the day
-- **Development Study** - Sessions for code analysis and learning
-- **Educational Demonstrations** - Scheduled classroom or workshop sessions
+### Technical Architecture and Data Management
 
-**Interaction Method:**
-- **Primary Input Device** - Computer keyboard (spacebar for jumping)
-- **Platform** - Desktop computers (Windows, macOS, Linux)
-- **Installation** - Git clone repository: `git clone https://github.com/unibo-dtm-se-2425-FlappyPy/artifact.git` followed by `cd artifact` and then `pip install -r requirements.txt`
-- **Execution** - Terminal command: `python -m FlappyPy`
+FlappyPy v1.2.1 operates as a completely self-contained application with no external dependencies beyond the pygame library. The architecture embraces session-based gameplay where each gaming experience exists independently in system memory, eliminating the complexity of persistent data storage while maintaining focus on core game mechanics and educational value.
 
-### Data Storage and Management
+This design philosophy ensures immediate playability without user registration, account management, or network connectivity requirements. The application's offline nature makes it ideal for educational environments where network restrictions might otherwise limit software demonstration capabilities.
 
-**User Data Requirements:**
-- **No Persistent Data Storage** - FlappyPy v1.2.1 does not store user data, scores, or preferences
-- **Session-Based Experience** - Each game session is independent with no saved progress
-- **Local Execution** - All game state exists only during active gameplay in system memory
+### User Engagement Model
 
-**Technical Data:**
-- **No Network Communication** - Fully offline, self-contained application
-- **No User Registration** - No accounts, profiles, or personal information collected
-- **No External Dependencies** - Beyond pygame library, no external services required
+The application supports two distinct interaction patterns that reflect its dual educational and entertainment purpose. **Casual players** engage in quick gaming sessions for entertainment and stress relief, while **developer-learners** interact with the codebase to understand professional Python development practices, examine the comprehensive test suite covering 55+ tests across 9 modules, and explore clean object-oriented architecture principles.
 
-### User Roles and Responsibilities
-
-**End User (Player):**
-- Launch the game application
-- Navigate bird through pipe obstacles using spacebar input
-- Restart game sessions after collision
-
-**Developer/Learner:**
-- Install package via Github repository
-- Examine source code for educational purposes
-- Run comprehensive test suite for learning testing practices
+**Key responsibilities** for end users involve launching the application and navigating through gameplay using spacebar controls, while developer users focus on code examination, testing methodology analysis, and understanding the GitHub-based CI/CD pipeline that ensures quality through automated testing and releases with Apache 2.0 licensing.

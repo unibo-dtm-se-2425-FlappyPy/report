@@ -8,120 +8,34 @@ nav_order: 8
 
 ## User Installation
 
-**FlappyPy requires Python environment setup and package installation on the user's machine.**
+FlappyPy delivers **zero-configuration deployment** through GitHub-based distribution, requiring only Python 3.9+ and standard package management tools. The educational-focused architecture eliminates complex setup procedures, enabling immediate gameplay following a simple clone-and-install workflow that supports Windows, macOS, and Linux environments seamlessly.
 
-### Prerequisites
+### Quick Start
 
-**Required Software:**
-- **Python 3.9 or higher** - FlappyPy is compatible with Python 3.9, 3.10, and 3.11
-- **pip package manager** - Usually included with Python installations
-- **Operating System**: Windows, macOS, or Linux
-
-**Installation Commands:**
-
-**Install FlappyPy from GitHub Releases (Current Method)**
 ```bash
 git clone https://github.com/unibo-dtm-se-2425-FlappyPy/artifact.git
 cd artifact
 pip install -r requirements.txt
-```
-
-**Future PyPI Installation (Not Yet Available)**
-```bash
-pip install FlappyPy  # Not yet implemented
-```
-
-**Manual Dependency Installation:**
-- **pygame 2.6.1** - Graphics and input handling library (install via requirements.txt)
-- **setuptools** - Package management utilities (install via requirements.txt)
-
-### Configuration
-
-**No Configuration Required:**
-- **Zero configuration** - FlappyPy runs immediately after installation
-- **No config files** - No settings files to create or modify
-- **No environment variables** - No system environment setup needed
-- **Ready to play** - Game launches with default settings
-
-### Launch Instructions
-
-**Running FlappyPy:**
-**Launch the game**
-```bash
-cd artifact
 python -m FlappyPy
 ```
 
-**What happens:**
-1. **Game window opens** - 400x600 pixel window appears
-2. **Immediate gameplay** - Bird appears and responds to spacebar input
-3. **No setup menus** - Game starts in playable state immediately
+**Dependencies:** pygame 2.6.1, setuptools (automatically handled via requirements.txt)
 
-### Verification
+### Launch and Verification
 
-**Test Installation:**
-**Verify installation**
-```bash
-cd artifact
-python -c "import FlappyPy; print('FlappyPy installed successfully')"
-```
-**Test game launch (should open game window)**
-```bash
-cd artifact
-python -m FlappyPy
-```
+The game launches immediately with `python -m FlappyPy`, opening a 400x600 pixel window with responsive spacebar controls and smooth 60 FPS performance. Installation verification requires no complex testing procedures—successful dependency installation followed by error-free game window opening confirms proper deployment across all supported platforms.
 
-**Expected Results:**
-- **No error messages** during installation
-- **Game window opens** without crashes
-- **Spacebar input responsive** - Bird jumps when pressed
-- **Smooth 60 FPS gameplay** - No lag or stuttering
+**Cross-Platform Notes:**
+- **Windows/macOS**: pygame binaries included, no additional dependencies
+- **Linux**: May require `python3-dev` for pygame compilation (`sudo apt-get install python3-dev`)
 
-### Platform-Specific Notes
+## Deployment Validation
 
-**Windows:**
-- **Python installation**: Download from python.org or use Microsoft Store
-- **Command prompt**: Use cmd or PowerShell for installation commands
-- **No additional dependencies** - pygame binaries included in package
+The comprehensive validation strategy encompasses automated installation testing across Windows 10/11, macOS 10.15+, and Ubuntu 20.04+ systems with Python 3.9-3.11 compatibility verification. Success criteria focus on **100% installation success rate** with immediate gameplay accessibility, ensuring minimal setup barriers align with the educational project's accessibility goals.
 
-**macOS:**
-- **Python installation**: Download from python.org or use Homebrew
-- **Terminal**: Use Terminal.app for installation commands
-- **No additional dependencies** - pygame binaries included in package
-
-**Linux:**
-- **Python installation**: Usually pre-installed, or use package manager
-- **Additional packages**: May need `python3-dev` for pygame compilation
-- **Installation example**: `sudo apt-get install python3-dev` (Ubuntu/Debian)
-
-## Server-Side Installation
-
-**Not Applicable: FlappyPy is a Desktop Application**
-
-## Deployment Verification
-
-**User Experience Validation:**
-
-**Installation Test Checklist:**
-- ✅ **Python 3.9+ available** - `python --version` shows compatible version
-- ✅ **Git functioning** - `git --version` shows working version control
-- ✅ **pip functioning** - `pip --version` shows working package manager
-- ✅ **FlappyPy clones** - `git clone` completes without errors
-- ✅ **Dependencies install** - `pip install -r requirements.txt` completes without errors
-- ✅ **Game launches** - `python -m FlappyPy` opens game window
-- ✅ **Gameplay works** - Spacebar input produces bird movement
-- ✅ **Physics active** - Bird falls due to gravity when not jumping
-- ✅ **Collision detection** - Game over occurs when bird hits pipes or ground
-- ✅ **Restart functions** - Spacebar restarts game after game over
-
-**Cross-Platform Validation:**
-- **Windows testing** - Verified on Windows 10/11 systems
-- **macOS testing** - Verified on macOS 10.15+ systems  
-- **Linux testing** - Verified on Ubuntu 20.04+ and similar distributions
-- **Python version testing** - Verified on Python 3.9, 3.10, 3.11
-
-**Success Criteria:**
-- **100% installation success rate** across supported platforms
-- **Immediate gameplay** - Minimal setup required after git clone
-- **Consistent performance** - 60 FPS gameplay on all platforms
-- **Manual configuration only** - Dependencies installed via requirements.txt
+**Core Validation Checks:**
+- Git clone completion without errors
+- Dependencies install via `pip install -r requirements.txt`
+- Game window opens with `python -m FlappyPy`
+- Spacebar input produces immediate bird movement
+- Collision detection and restart functionality operate correctly
