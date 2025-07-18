@@ -39,6 +39,6 @@ The technical implementation embraces **object-oriented programming principles**
 
 ## Disclaimer
 
-During the preparation of this work, the author(s) used AI-powered development assistance to enhance the implementation process. 
+During the development of this project, the author(s) utilized the **Claude Sonnet 4.0** LLM model to assist with error analysis, best practice recommendations, and code annotation enhancements. Additionally, the **Gemini 2.5 Pro** LLM model was employed to help summarize sections of the final report. All UML diagrams were generated using **PlantUML**, with the corresponding `.pu` source files available in `/sections/03-design/` path in the [project's report repository](https://github.com/unibo-dtm-se-2425-FlappyPy/report).
 
 After using this assistance, the author(s) implemented all code independently, reviewed and tested all functionality thoroughly, and take(s) full responsibility for the content of the final artifact and comprehensive project documentation.
